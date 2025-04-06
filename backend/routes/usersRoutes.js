@@ -27,14 +27,13 @@ usersRouter.get('/getUserInfo', (req, res) => {
     Connection.open().then(async database => {
       let collection = await database.collection('Users');
       console.log('going to find one');
-      collection.findOne({username: req.body.username}).then((user, error) => {
+      collection.findOne({username: req.query.username}).then((user, error) => {
         console.log(user);
         res.send(user).status(200);
       });
     });
   } catch (err) {
     console.log(err);
-  } finally {
     Connection.close();
   }
 

@@ -6,6 +6,7 @@ import userConcertsRouter from './routes/userConcertsRoutes.js';
 import usersRouter from './routes/usersRoutes.js';
 import {MongoClient, ServerApiVersion} from 'mongodb';
 import bodyParser from 'body-parser';
+import Connection from './database/connection.js';
 
 const PORT = process.env.PORT || 8080;
 
@@ -20,4 +21,14 @@ app.use('/users', jsonParser, usersRouter);
 //start server
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
+});
+
+app.on('SIGTERM', () => {
+  console.log('SIGTERM signal received.');
+  Connection.close();
+});
+
+app.on('SIGINT', () => {
+  console.log('SIGINT signal received.');
+  Connection.close();
 });

@@ -36,7 +36,7 @@ function App() {
   const pages = ['Home', 'Search', 'Friends'];
   const settings = ['My Profile', 'Settings', 'Stats', 'Logout'];
   const context = {
-    name: 'dani',
+    name: '',
     userId: '',
   };
 
@@ -62,7 +62,7 @@ function App() {
       <Context.Provider value={context}>
         <Navbar />
         {/* <App /> */}
-        <div className="centerChildren">
+        <div className="">
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/home" element={<Home />}></Route>
